@@ -31,8 +31,4 @@ jobs:
       options: --workdir /workspace
     steps:
     - uses: actions/checkout@v2
-    - run: generate-custom \
-    --download \
-    --schema=config/railways.yml \
-    --area="$AREA" \
-    --output="data/$AREA.planetiler.mbtiles"
+    - run: generate-custom --download --schema=config/railways.yml --area="$AREA" --output="data/$AREA.planetiler.mbtiles"
