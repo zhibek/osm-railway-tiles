@@ -18,6 +18,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: mkdir -p data/sources; mkdir -p data/tmp; bash scripts/build-osmium.sh
+    - run: ls -lah data
 
   build_tiles_plantiler:
     runs-on: ubuntu-latest
@@ -29,3 +30,4 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - run: mkdir -p data/sources; mkdir -p data/tmp; bash scripts/build-planetiler.sh
+    - run: ls -lah data
