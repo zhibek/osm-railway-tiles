@@ -1,4 +1,4 @@
-name: main
+name: build_planetiler
 
 on:
   push:
