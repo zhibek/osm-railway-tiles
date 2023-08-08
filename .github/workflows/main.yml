@@ -6,13 +6,15 @@ on:
 jobs:
 
   build_tiles_osmium:
-    runs-on: zhibek/osm-toolbox:1.1.0
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-osmium.sh -d false -a andorra
+    - uses: docker://zhibek/osm-toolbox:1.1.0
+      run: bash scripts/build-osmium.sh -d false -a andorra
 
   build_tiles_plantiler:
-    runs-on: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+    runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-plantiler.sh -d false -a andorra
+    - uses: docker://ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+      run: bash scripts/build-plantiler.sh -d false -a andorra
