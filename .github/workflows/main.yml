@@ -27,6 +27,6 @@ jobs:
         DOCKER: false
         AREA: andorra
     steps:
-    - uses: actions/checkout@v2
+    # - uses: actions/checkout@v2
     - run: ls -al
     # - run: java -jar run.jar generate-custom --download --schema=config/railways.yml --area="$AREA" --output="data/$AREA.planetiler.mbtiles"
