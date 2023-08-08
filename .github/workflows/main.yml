@@ -1,0 +1,18 @@
+name: main
+
+on:
+  push:
+
+jobs:
+
+  build_tiles_osmium:
+    runs-on: zhibek/osm-toolbox:1.1.0
+    steps:
+    - uses: actions/checkout@v2
+    - run: bash scripts/build-osmium.sh -d false -a andorra
+
+  build_tiles_plantiler:
+    runs-on: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+    steps:
+    - uses: actions/checkout@v2
+    - run: bash scripts/build-plantiler.sh -d false -a andorra
