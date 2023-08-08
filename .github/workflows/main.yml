@@ -17,4 +17,4 @@ jobs:
     container: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-plantiler.sh -d false -a andorra
+    - run: bash scripts/build-planetiler.sh -d false -a andorra
