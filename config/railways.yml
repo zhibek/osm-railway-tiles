@@ -1,0 +1,71 @@
+schema_name: Railways
+schema_description: Railways
+attribution: <a href="https://www.openstreetmap.org/copyright" target="_blank">&copy; OpenStreetMap contributors</a>
+args:
+  area:
+    description: Geofabrik area to download
+    default: asia
+  osm_url:
+    description: OSM URL to download
+    default: '${ args.area == "planet" ? "aws:latest" : ("geofabrik:" + args.area) }'
+sources:
+  osm:
+    type: osm
+    url: '${ args.osm_url }'
+definitions:
+  attributes:
+  - &name
+    key: name
+  - &name_en
+    key: name_en
+    tag_value: name:en
+layers:
+- id: railways
+  features:
+  - source: osm
+    geometry: line
+    min_size: 0
+    min_zoom: 0
+    include_when:
+      __all__:
+      - railway: __any__
+    attributes:
+    - *name
+    - *name_en
+    - key: railway
+    - key: usage
+    - key: service
+    - key: gauge
+    - key: highspeed
+    - key: maxspeed
+    - key: passenger_lines
+    - key: electrified
+    - key: voltage
+    - key: frequency
+    - key: tunnel
+    - key: bridge
+    - key: embankment
+    - key: cutting
+  tile_post_process:
+    merge_line_strings:
+      min_length: 0
+      tolerance: -1
+      buffer: -1
+- id: stations
+  features:
+  - source: osm
+    geometry: point
+    min_zoom: 0
+    include_when:
+      railway: [ station, halt, tram_stop ]
+    attributes:
+    - *name
+    - *name_en
+    - key: railway
+    - key: public_transport
+    - key: network
+    - key: operator
+    - key: railway:ref
+    - key: uic_ref
+    - key: source
+    - key: wikidata
