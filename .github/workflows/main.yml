@@ -11,15 +11,15 @@ jobs:
       image: zhibek/osm-toolbox:1.1.0
       env:
         DOCKER: false
-        AREA: andorra
+        AREA: kazakhstan
       volumes:
         - .:/workspace
       options: --workdir /workspace
     steps:
     - uses: actions/checkout@v3
-    - run: ls -lah data
     - run: bash scripts/build-osmium.sh
     - run: ls -lah data
+    # TODO: Upload tiles to gh-pages
 
   build_tiles_plantiler:
     runs-on: ubuntu-latest
@@ -27,9 +27,9 @@ jobs:
       image: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
       env:
         DOCKER: false
-        AREA: andorra
+        AREA: kazakhstan
     steps:
     - uses: actions/checkout@v3
-    - run: ls -lah data
     - run: bash scripts/build-planetiler.sh
     - run: ls -lah data
+    # TODO: Upload tiles to gh-pages
