@@ -8,7 +8,7 @@
 set -e
 
 # Declare constants
-SHELL_EXEC="bash"
+SHELL_EXEC="java -cp @/app/jib-classpath-file com.onthegomap.planetiler.Main"
 DOCKER_EXEC="docker run --rm --user $UID:$GID -e JAVA_TOOL_OPTIONS="-Xmx4g" -v "$(pwd):/workspace" -w /workspace ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT"
 EXEC=$SHELL_EXEC
 
