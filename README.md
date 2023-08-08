@@ -6,4 +6,3 @@ Processes to generate railway map tiles.
 
 * `scripts/build-osmium.sh` - Build map tiles using Osmium
 * `scripts/build-planetiler.sh` - Build map tiles using Planetiler
-* `scripts/build-planetiler.sh` - Build map tiles using Planetiler
