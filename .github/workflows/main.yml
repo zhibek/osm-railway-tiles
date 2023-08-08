@@ -7,14 +7,32 @@ jobs:
 
   build_tiles_osmium:
     runs-on: ubuntu-latest
-    container: zhibek/osm-toolbox:1.1.0
+    container:
+      image: zhibek/osm-toolbox:1.1.0
+      env:
+        DOCKER: false
+        AREA: andorra
+      volumes:
+        - .:/workspace
+      options: --workdir /workspace
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-osmium.sh -d false -a andorra
+    - run: bash scripts/build-osmium.sh
 
   build_tiles_plantiler:
     runs-on: ubuntu-latest
-    container: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+    container:
+      image: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+      env:
+        DOCKER: false
+        AREA: andorra
+      volumes:
+        - .:/workspace
+      options: --workdir /workspace
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-planetiler.sh -d false -a andorra
+    - run: generate-custom \
+    --download \
+    --schema=config/railways.yml \
+    --area="$AREA" \
+    --output="data/$AREA.planetiler.mbtiles"
