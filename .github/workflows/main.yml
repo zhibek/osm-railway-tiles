@@ -17,7 +17,7 @@ jobs:
       options: --workdir /workspace
     steps:
     - uses: actions/checkout@v2
-    - run: bash scripts/build-osmium.sh
+    - run: mkdir -p data/source; mkdir -p data/tmp; bash scripts/build-osmium.sh
 
   build_tiles_plantiler:
     runs-on: ubuntu-latest
@@ -26,9 +26,6 @@ jobs:
       env:
         DOCKER: false
         AREA: andorra
-      volumes:
-        - .:/workspace
-      options: --workdir /workspace
     steps:
     - uses: actions/checkout@v2
-    - run: generate-custom --download --schema=config/railways.yml --area="$AREA" --output="data/$AREA.planetiler.mbtiles"
+    - run: java -jar run.jar generate-custom --download --schema=config/railways.yml --area="$AREA" --output="data/$AREA.planetiler.mbtiles"
