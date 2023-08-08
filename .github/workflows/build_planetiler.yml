@@ -1,0 +1,19 @@
+name: main
+
+on:
+  push:
+
+jobs:
+
+  build_tiles_plantiler:
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/onthegomap/planetiler:0.6-SNAPSHOT
+      env:
+        DOCKER: false
+        AREA: kazakhstan
+    steps:
+    - uses: actions/checkout@v3
+    - run: bash scripts/build-planetiler.sh
+    - run: ls -lah data
+    # TODO: Upload tiles to gh-pages
