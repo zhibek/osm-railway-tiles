@@ -39,6 +39,8 @@ $EXEC generate-custom \
 --download \
 --schema=config/railways.yml \
 --area=$AREA \
+--force \
+--free_osm_after_read=true \
 --output="data/$AREA.planetiler.mbtiles"
 rm -fr data/tmp/feature.db
 
