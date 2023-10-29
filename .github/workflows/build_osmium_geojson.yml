@@ -1,0 +1,22 @@
+name: build_osmium_geojson
+
+on:
+  push:
+
+jobs:
+
+  build_tiles_osmium:
+    runs-on: ubuntu-latest
+    container:
+      image: zhibek/osm-toolbox:1.2.0
+      env:
+        DOCKER: false
+        AREA: asia
+      volumes:
+        - .:/workspace
+      options: --workdir /workspace
+    steps:
+    - uses: actions/checkout@v3
+    - run: bash scripts/build-osmium-geojson.sh
+    - run: ls -lah data
+    # TODO: Upload tiles to gh-pages
